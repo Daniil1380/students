@@ -93,8 +93,26 @@ public class Main {
 
         //Найти все книги, которые у студентов, у которых id делится на 2
 
-        //students.stream()
+        List<Book> list = students.stream()
+                .filter(student -> student != null && student.getBooks() != null)
+                .map(Student::getBooks)
+                .flatMap(Collection::stream)
+                .filter(book -> book != null && book.getId() > 0 && book.getId() % 2 == 0)
+                .toList();
+
+        System.out.println(list);
+
+        HashMap<String, String> hashMap = new HashMap<>();
+
+        //количество ключей в мапе, которые начинаются на А
+        long count = hashMap.entrySet().stream()
+                .filter(x -> x.getKey().startsWith("A"))
+                .count();
+
+        hashMap.keySet();
+        hashMap.values();
 
 
+        //students.stream
     }
 }
